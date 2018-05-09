@@ -8,23 +8,18 @@ public class ChangeCoin {
     public int calculateChangeCoin(int[] coins, int target) {
         int min = Integer.MAX_VALUE;
 
-        for (int coin :  coins){
-            if(target < coin){
+        for (int coin : coins) {
+            if (target < coin) {
                 continue;
             }
 
-            int quotient = target / coin;
-            int remainder = target % coin;
+            if(target - coin == 0){
+                return 1;
+            }
 
-            if(remainder == 0) {
-                if(quotient < min) {
-                    min = quotient;
-                }
-            } else {
-                int temp = calculateChangeCoin(coins, remainder) + quotient;
-                if(temp < min){
-                    min = temp;
-                }
+            int temp = calculateChangeCoin(coins, target - coin) + 1;
+            if (temp < min) {
+                min = temp;
             }
         }
 

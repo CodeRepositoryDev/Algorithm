@@ -11,7 +11,7 @@ public class TestCoinChange {
     @Test
     public void ChangeCoinTest() {
         int[] coins = {10, 50, 100, 120, 200};
-        int result = sut.calculateChangeCoin(coins, 340);
+        int result = sut.calculateChangeCoin(coins, 540);
         System.out.println(result);
     }
 }

@@ -9,7 +9,7 @@ import java.util.PriorityQueue;
 import java.util.Set;
 
 public class HuffmanAlgorithm {
-    //    private int[] characterArray = new int[128];
+        private int[] characterArray = new int[128];
     private HuffmanNode root;
     private Map<Character, String> map = new HashMap<>();
 
@@ -20,27 +20,27 @@ public class HuffmanAlgorithm {
 
         for (int i = 0; i < target.length(); i++) {
             char key = target.charAt(i);
-            if (frequency.containsKey(key)) {
-                int count = frequency.get(key) + 1;
-                frequency.remove(key);
-                frequency.put(key, count);
-            } else {
-                frequency.put(key, 1);
-            }
-
-//            characterArray[key]++;
-        }
-
-        Set<Character> keys = frequency.keySet();
-        for (char key : keys) {
-            queue.add(new HuffmanNode(key, frequency.get(key)));
-        }
-
-//        for (int i = 0; i < 128; i++) {
-//            if (characterArray[i] != 0) {
-//                queue.add(new HuffmanNode((char) i, characterArray[i]));
+//            if (frequency.containsKey(key)) {
+//                int count = frequency.get(key) + 1;
+//                frequency.remove(key);
+//                frequency.put(key, count);
+//            } else {
+//                frequency.put(key, 1);
 //            }
+
+            characterArray[key]++;
+        }
+
+//        Set<Character> keys = frequency.keySet();
+//        for (char key : keys) {
+//            queue.add(new HuffmanNode(key, frequency.get(key)));
 //        }
+
+        for (int i = 0; i < 128; i++) {
+            if (characterArray[i] != 0) {
+                queue.add(new HuffmanNode((char) i, characterArray[i]));
+            }
+        }
 
         while (queue.size() > 1) {
             HuffmanNode left = queue.poll();

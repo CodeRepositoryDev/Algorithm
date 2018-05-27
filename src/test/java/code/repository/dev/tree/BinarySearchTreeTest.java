@@ -36,4 +36,10 @@ public class BinarySearchTreeTest {
 
         System.out.println("search Node : " + searchNode);
     }
+
+    @Test
+    public void test(){
+        System.out.println((int)"Z".charAt(0));
+        System.out.println((int)"z".charAt(0));
+    }
 }

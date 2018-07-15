@@ -2,8 +2,6 @@ package code.repository.dev.huffman;
 
 import org.junit.Test;
 
-import java.util.Scanner;
-
 import static org.junit.Assert.assertEquals;
 
 public class HuffmanAlgorithmTest {

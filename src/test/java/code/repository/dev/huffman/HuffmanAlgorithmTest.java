@@ -14,4 +14,11 @@ public class HuffmanAlgorithmTest {
         String encodeString = huffmanAlgorithm.compression(expect);
         assertEquals(expect, huffmanAlgorithm.decompression(encodeString));
     }
+
+
+    @Test
+    public void test() {
+        System.out.println(1|1<<1);
+        System.out.println(1|1<<2);
+    }
 }

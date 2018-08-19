@@ -7,17 +7,17 @@ import lombok.Data;
  */
 
 @Data
-public class TreeNode {
+public class BinarySearchTreeNode {
     private int key;
-    private TreeNode parent;
-    private TreeNode left;
-    private TreeNode right;
+    private BinarySearchTreeNode parent;
+    private BinarySearchTreeNode left;
+    private BinarySearchTreeNode right;
 
-    public TreeNode(int key){
+    public BinarySearchTreeNode(int key){
         this.key = key;
     }
 
-    public TreeNode() {
+    public BinarySearchTreeNode() {
         super();
     }
 

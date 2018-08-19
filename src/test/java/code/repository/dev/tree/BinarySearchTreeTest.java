@@ -10,7 +10,7 @@ public class BinarySearchTreeTest {
     @Test
     public void testBinarySearchTree() {
         BinarySearchTree binarySearchTree = new BinarySearchTree();
-        TreeNode root = new TreeNode(25);
+        BinarySearchTreeNode root = new BinarySearchTreeNode(25);
         binarySearchTree.setRoot(root);
         binarySearchTree.insertNode(10);
         binarySearchTree.insertNode(15);
@@ -24,7 +24,7 @@ public class BinarySearchTreeTest {
 
         binarySearchTree.deleteNode(10);
 
-        TreeNode searchNode = binarySearchTree.searchNode(root, 18);
+        BinarySearchTreeNode searchNode = binarySearchTree.searchNode(root, 18);
         System.out.println("preOrder");
         binarySearchTree.preOrder(root);
         System.out.println("inOrder");

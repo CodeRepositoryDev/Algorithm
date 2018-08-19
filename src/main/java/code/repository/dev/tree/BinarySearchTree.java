@@ -10,10 +10,10 @@ import java.util.Queue;
  */
 @Data
 public class BinarySearchTree {
-    private static final TreeNode NO_SUCH_KEY = null;
-    private TreeNode root;
+    private static final BinarySearchTreeNode NO_SUCH_KEY = null;
+    private BinarySearchTreeNode root;
 
-    public TreeNode searchNode(TreeNode node, int key) {
+    public BinarySearchTreeNode searchNode(BinarySearchTreeNode node, int key) {
         System.out.println(node);
 
         if (node.isLeaf()) {
@@ -38,13 +38,13 @@ public class BinarySearchTree {
     }
 
     public void insertNode(int key) {
-        TreeNode parentNode = searchNode(root, key);
+        BinarySearchTreeNode parentNode = searchNode(root, key);
 
         if (parentNode.getKey() == key) {
             throw new IllegalStateException("duplicated key");
         }
 
-        TreeNode child = new TreeNode();
+        BinarySearchTreeNode child = new BinarySearchTreeNode();
         child.setParent(parentNode);
         child.setKey(key);
 
@@ -56,13 +56,13 @@ public class BinarySearchTree {
     }
 
     public void deleteNode(int key) {
-        TreeNode node = searchNode(root, key);
+        BinarySearchTreeNode node = searchNode(root, key);
 
         if (node.getKey() != key) {
             throw new IllegalStateException("no such key");
         }
 
-        TreeNode parent = node.getParent();
+        BinarySearchTreeNode parent = node.getParent();
 
         if (node.isLeaf()) {
             if (parent.getLeft().getKey() == key) {
@@ -84,7 +84,7 @@ public class BinarySearchTree {
                     parent.setRight(node.getRight());
                 }
             } else {
-                TreeNode replaceNode = searchNode(node.getLeft(), key);
+                BinarySearchTreeNode replaceNode = searchNode(node.getLeft(), key);
                 replaceNode.getParent().setLeft(replaceNode.getLeft());
                 replaceNode.setRight(node.getRight());
                 if (parent.getLeft().getKey() == key) {
@@ -96,7 +96,7 @@ public class BinarySearchTree {
         }
     }
 
-    public void preOrder(TreeNode root) {
+    public void preOrder(BinarySearchTreeNode root) {
         if (root != null) {
             System.out.println("node: " + root.getKey());
             preOrder(root.getLeft());
@@ -104,7 +104,7 @@ public class BinarySearchTree {
         }
     }
 
-    public void inOrder(TreeNode root) {
+    public void inOrder(BinarySearchTreeNode root) {
         if (root != null) {
             inOrder(root.getLeft());
             System.out.println("node: " + root.getKey());
@@ -112,7 +112,7 @@ public class BinarySearchTree {
         }
     }
 
-    public void postOrder(TreeNode root) {
+    public void postOrder(BinarySearchTreeNode root) {
         if (root != null) {
             postOrder(root.getLeft());
             postOrder(root.getRight());
@@ -120,12 +120,12 @@ public class BinarySearchTree {
         }
     }
 
-    public void levelOrder(TreeNode root) {
-        Queue<TreeNode> queue = new LinkedList<>();
+    public void levelOrder(BinarySearchTreeNode root) {
+        Queue<BinarySearchTreeNode> queue = new LinkedList<>();
         queue.add(root);
 
         while (!queue.isEmpty()) {
-            TreeNode parent = queue.poll();
+            BinarySearchTreeNode parent = queue.poll();
             System.out.println("node: " + parent.getKey());
 
             if(parent.getLeft() != null){

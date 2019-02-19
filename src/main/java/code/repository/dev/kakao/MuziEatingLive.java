@@ -6,7 +6,7 @@ package code.repository.dev.kakao;
 public class MuziEatingLive {
 
     public static void main(String[] args) {
-        System.out.println(solution(new int[]{3, 1, 2}, 5));
+        System.out.println(solution(new int[]{1, 1, 2000}, 333));
     }
 
     public static int solution(int[] food_times, long k) {
@@ -38,23 +38,31 @@ public class MuziEatingLive {
         for (int i = 0; i < food_times.length; i++) {
             food_times[i] -= quotient;
             if (food_times[i] < 0) {
-                for (int j = 1; j <= Math.abs(food_times[i]); j++) {
+                int j = 1;
+                int tempRemainder = Math.abs(food_times[i]);
+                while (tempRemainder > 0) {
                     if (food_times[(i + j) % food_times.length] > 0) {
                         food_times[(i + j) % food_times.length] -= 1;
+                        tempRemainder--;
                     }
+
+                    j++;
                 }
 
                 food_times[i] = 0;
             }
         }
 
-        while (remainder > 0) {
+        while (remainder >= 0) {
             if (food_times[answer] > 0) {
                 food_times[answer] -= 1;
                 remainder--;
             }
-            answer++;
-            answer = answer % food_times.length;
+
+            if (remainder >= 0) {
+                answer++;
+                answer = answer % food_times.length;
+            }
         }
 
         return answer + 1;

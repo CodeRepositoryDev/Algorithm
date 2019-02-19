@@ -10,6 +10,7 @@ public class MuziEatingLive {
     }
 
     public static int solution(int[] food_times, long k) {
+        int answer = -1;
         int quotient = (int) Math.floor(k / food_times.length);
         int remainder = (int) (k % food_times.length);
         int sum = 0;
@@ -17,13 +18,24 @@ public class MuziEatingLive {
         for (int i = 0; i < food_times.length; i++) {
             sum += food_times[i];
             food_times[i] -= quotient;
+
+            if (remainder > 0) {
+                food_times[i] -= 1;
+                remainder--;
+            }
+
+            if (remainder == 0) {
+                answer = i;
+                remainder--;
+            }
+
             if (food_times[i] < 0) {
                 if (i + 1 >= food_times.length) {
                     food_times[0] += food_times[i];
-                    sum += food_times[i];
+                    sum -= food_times[i];
                 } else {
                     food_times[i + 1] += food_times[i];
-                    sum += food_times[i];
+                    sum -= food_times[i];
                 }
 
                 food_times[i] = 0;
@@ -34,37 +46,20 @@ public class MuziEatingLive {
             return -1;
         }
 
-        int answer = -1;
-
-        for (int i = 0; i <= remainder; i++) {
-            if (i == remainder) {
-                while (true) {
-                    if (i < food_times.length) {
-                        if (food_times[i] > 0) {
-                            answer = i;
-                            break;
-                        }
-                    } else {
-                        if (food_times[i - food_times.length] > 0) {
-                            answer = i - food_times.length;
-                            break;
-                        }
-                    }
-                    i += 1;
+        while (true) {
+            if (answer < food_times.length) {
+                if (food_times[answer] > 0) {
+                    break;
                 }
             } else {
-                food_times[i] -= 1;
-                if (food_times[i] < 0) {
-                    if (i + 1 >= food_times.length) {
-                        food_times[0] += food_times[i];
-                    } else {
-                        food_times[i + 1] += food_times[i];
-                    }
-                    food_times[i] = 0;
+                if (food_times[answer - food_times.length] > 0) {
+                    answer = answer - food_times.length;
+                    break;
                 }
             }
-
+            answer += 1;
         }
+
 
         return answer + 1;
     }

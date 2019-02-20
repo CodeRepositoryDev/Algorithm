@@ -9,7 +9,7 @@ import java.util.PriorityQueue;
 import java.util.Set;
 
 public class HuffmanAlgorithm {
-        private int[] characterArray = new int[128];
+    private int[] characterArray = new int[128];
     private HuffmanNode root;
     private Map<Character, String> map = new HashMap<>();
 

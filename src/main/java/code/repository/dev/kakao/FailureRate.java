@@ -46,14 +46,10 @@ public class FailureRate {
 				if (o1.rate > o2.rate) {
 					return -1;
 				} else if (o1.rate == o2.rate) {
-					if (o1.getIndex() > o2.getIndex()) {
-						return 1;
-					}
+					return Integer.compare(o1.index, o2.index);
 				} else {
 					return 1;
 				}
-
-				return 0;
 			}
 		});
 

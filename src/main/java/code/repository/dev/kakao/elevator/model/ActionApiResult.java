@@ -13,7 +13,7 @@ import lombok.Data;
  * @author YoungSeok.Kim
  */
 @Data
-public class ApiResult {
+public class ActionApiResult {
 	private String token;
 	private Integer timestamp;
 	private List<Elevator> elevators;

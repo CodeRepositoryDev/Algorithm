@@ -464,7 +464,13 @@ public class ElevatorAlgorithm {
 											command.setCommand(CommandCode.DOWN.name());
 										}
 									} else {
-										command.setCommand(CommandCode.DOWN.name());
+										if (elevator.getFloor() < nearestPassenger.getStart()) {
+											command.setCommand(CommandCode.DOWN.name());
+										} else if (elevator.getFloor().equals(nearestPassenger.getStart())) {
+											command.setCommand(CommandCode.STOP.name());
+										} else {
+											command.setCommand(CommandCode.DOWN.name());
+										}
 									}
 								}
 							}

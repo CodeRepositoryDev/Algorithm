@@ -22,16 +22,22 @@ public class FailureRate {
 				notClear[stageNumberInUser] += 1;
 			}
 		}
+
+		List<FailRate> failureRate = new ArrayList<>();
 		int userCount = stages.length;
 		for (int i = 1; i < N + 1; i++) {
 			reachStages[i] = userCount;
+			float rate = 0.0f;
+			if (reachStages[i] != 0) {
+				rate = (float)notClear[i] / (float)reachStages[i];
+			}
+
+			failureRate.add(new FailRate(i, rate));
 			userCount = userCount - notClear[i];
 		}
 
-		List<FailRate> failureRate = new ArrayList<>();
 		for (int i = 1; i < N + 1; i++) {
 			System.out.println("Index:" + i + ", NotClear:" + notClear[i] + ", ReachStages:" + reachStages[i]);
-			failureRate.add(new FailRate(i, (double)((float)notClear[i] / (float)reachStages[i])));
 		}
 
 		failureRate.sort(new Comparator<FailRate>() {
@@ -39,25 +45,28 @@ public class FailureRate {
 			public int compare(FailRate o1, FailRate o2) {
 				if (o1.rate > o2.rate) {
 					return -1;
+				} else if (o1.rate == o2.rate) {
+					return Integer.compare(o1.index, o2.index);
+				} else {
+					return 1;
 				}
-
-				return 0;
 			}
 		});
 
 		int[] answer = new int[N];
 		for (int i = 0; i < N; i++) {
-			System.out.println(failureRate);
 			answer[i] = failureRate.get(i).getIndex();
 		}
+
+		System.out.println(failureRate);
 		return answer;
 	}
 
 	class FailRate {
 		private int index;
-		private double rate;
+		private float rate;
 
-		FailRate(int index, double rate) {
+		FailRate(int index, float rate) {
 			this.index = index;
 			this.rate = rate;
 		}
@@ -70,11 +79,11 @@ public class FailureRate {
 			this.index = index;
 		}
 
-		public double getRate() {
+		public float getRate() {
 			return rate;
 		}
 
-		public void setRate(double rate) {
+		public void setRate(float rate) {
 			this.rate = rate;
 		}
 

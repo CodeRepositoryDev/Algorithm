@@ -25,32 +25,21 @@ public class OpenChattingRoom {
 	}
 
 	private static String[] solution(String[] record) {
-		List<Record> records = new ArrayList<>();
 		List<Record> answerRecords = new ArrayList<>();
 		Map<String, String> userIdMappingNickName = new HashMap<>();
 
 		for (String recordItem : record) {
 			String[] temp = recordItem.split(" ");
 			switch (temp[0]) {
-				case "Leave":
-					records.add(new Record(temp[0], temp[1]));
-					break;
-				default:
-					records.add(new Record(temp[0], temp[1], temp[2]));
+				case "Enter":
+					answerRecords.add(new Record(temp[0], temp[1], temp[2]));
 					userIdMappingNickName.put(temp[1], temp[2]);
 					break;
-			}
-		}
-
-		for (Record record1 : records) {
-			switch (record1.getBehavior()) {
-				case "Enter":
-					answerRecords.add(record1);
-					break;
 				case "Leave":
-					answerRecords.add(record1);
+					answerRecords.add(new Record(temp[0], temp[1]));
 					break;
 				default:
+					userIdMappingNickName.put(temp[1], temp[2]);
 					break;
 			}
 		}

@@ -76,11 +76,11 @@ public class Nonogram {
 						for (int calculateColumn = columnIndex; calculateColumn < column; calculateColumn++) {
 
 						}
-						if (fillNumber > row / 2) {
-							for (int columnIndex = row - fillNumber; columnIndex < fillNumber; columnIndex++) {
-								map[rowIndex][columnIndex] = true;
-							}
-						}
+//						if (fillNumber > row / 2) {
+//							for (int columnIndex = row - fillNumber; columnIndex < fillNumber; columnIndex++) {
+//								map[rowIndex][columnIndex] = true;
+//							}
+//						}
 					}
 				}
 			}

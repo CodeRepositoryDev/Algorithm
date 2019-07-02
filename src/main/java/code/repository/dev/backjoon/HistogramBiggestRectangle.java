@@ -20,64 +20,34 @@ public class HistogramBiggestRectangle {
 				return;
 			}
 
-			int[] heights = new int[n];
-			int maxHeight = -1;
+			long[] heights = new long[n + 1];
+
 			for (int i = 0; i < n; i++) {
-				heights[i] = scanner.nextInt();
-				if (maxHeight < heights[i]) {
-					maxHeight = heights[i];
-				}
+				heights[i] = scanner.nextLong();
 			}
 
-			int maxArea = -1;
-
-			//			int dp[][] = new int[n][maxHeight];
-			//			for (int i = 0; i < n; i++) {
-			//				for (int h = 0; h < heights[i]; h++) {
-			//					if (i != 0 && dp[i - 1][h] > 0) {
-			//						dp[i][h] = dp[i - 1][h] + h + 1;
-			//						if (dp[i][h] > maxArea) {
-			//							maxArea = dp[i][h];
-			//						}
-			//
-			//					} else {
-			//						dp[i][h] = h + 1;
-			//						if (dp[i][h] > maxArea) {
-			//							maxArea = dp[i][h];
-			//						}
-			//					}
-			//				}
-			//			}
-
-			//			for (int i = 0; i < n; i++) {
-			//				int x1 = 1;
-			//				for (int j = i - 1; j >= 0; j--) {
-			//					if (heights[j] >= heights[i]) {
-			//						x1++;
-			//					} else {
-			//						break;
-			//					}
-			//				}
-			//				int preArea = heights[i] * x1;
-			//
-			//				int x2 = 0;
-			//				for (int j = i; j < n; j++) {
-			//					if (heights[j] >= heights[i]) {
-			//						x2++;
-			//					} else {
-			//						break;
-			//					}
-			//				}
-			//
-			//				int postArea = heights[i] * x2;
-			//
-			//				if (maxArea < Integer.max(preArea, postArea)) {
-			//					maxArea = Integer.max(preArea, postArea);
-			//				}
-			//			}
-
-			System.out.println(maxArea);
-			return;
+			System.out.println(calculateArea(0, n, heights));
 		}
+	}
+
+	public static long calculateArea(int start, int end, long[] heights) {
+		if (start >= end) {
+			return heights[start];
+		}
+
+		long minHeight = Integer.MAX_VALUE;
+		int minIndex = -1;
+
+		for (int i = start; i < end; i++) {
+			if (minHeight > heights[i]) {
+				minHeight = heights[i];
+				minIndex = i;
+			}
+		}
+
+		long area = minHeight * (end - start);
+		long left = calculateArea(start, minIndex, heights);
+		long right = calculateArea(minIndex + 1, end, heights);
+		return Long.max(area, Long.max(left, right));
 	}
 }

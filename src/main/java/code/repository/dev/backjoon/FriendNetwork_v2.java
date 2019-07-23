@@ -46,6 +46,8 @@ public class FriendNetwork_v2 {
         if (!aGroup.equals(bGroup)) {
             parents.put(aGroup, aGroup);
             parents.put(bGroup, aGroup);
+            parents.put(name1, aGroup);
+            parents.put(name2, aGroup);
 
             networkCount = friends.getOrDefault(aGroup, 1) + friends.getOrDefault(bGroup, 1);
 
